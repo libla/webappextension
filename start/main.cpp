@@ -18,7 +18,7 @@ extern "C"
 		void(*notify)(Interface *ptr, const char *type, const char *msg);
 	};
 
-	int Start(void *wnd, Interface *ptr, const char *args);
+	int Start(const void *data, int len, void *wnd, Interface *ptr, const char *args);
 	void Close();
 	void Resize();
 	const char *Message(const char *msg);
@@ -100,7 +100,7 @@ static LRESULT CALLBACK WndProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-int Start(void *wnd, Interface *ptr, const char *args)
+int Start(const void *data, int len, void *wnd, Interface *ptr, const char *args)
 {
 	parentwnd = (HWND)wnd;
 	if (parentwnd == NULL)

@@ -2,7 +2,7 @@
 
 namespace
 {
-	typedef int(*StartFunc)(void *wnd, void *ptr, const char *args);
+	typedef int(*StartFunc)(const void *data, int len, void *wnd, void *ptr, const char *args);
 	typedef void(*CloseFunc)();
 	typedef void(*ResizeFunc)();
 	typedef const char *(*MessageFunc)(const char *msg);
@@ -73,7 +73,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 	else
 	{
-		int result = fn(hWnd, NULL, NULL);
+		int result = fn(NULL, 0, hWnd, NULL, NULL);
 		if (result != 0)
 			SendMessage(hWnd, WM_DESTROY, result, 0);
 	}
